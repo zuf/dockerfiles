@@ -24,18 +24,13 @@ echo "CONTACT_EMAIL=\"${CONTACT_EMAIL}\"" > /etc/dehydrated/config.d/email.sh
 echo "Registering account..."
 /opt/dehydrated/dehydrated --register --accept-terms
 
-while :; do
-  echo "Registering certs..."
-  /opt/dehydrated/dehydrated \
-    --cron \
-    --config /etc/dehydrated/config \
-    --keep-going
+echo "Registering certs..."
+/opt/dehydrated/dehydrated \
+  --cron \
+  --config /etc/dehydrated/config \
+  --keep-going
 
-  echo "Cleaning unused certs..."
-  /opt/dehydrated/dehydrated \
-    --cleanup \
-    --config /etc/dehydrated/config
-
-  echo 'Sleeping...'
-  sleep 86400
-done
+echo "Cleaning unused certs..."
+/opt/dehydrated/dehydrated \
+  --cleanup \
+  --config /etc/dehydrated/config
